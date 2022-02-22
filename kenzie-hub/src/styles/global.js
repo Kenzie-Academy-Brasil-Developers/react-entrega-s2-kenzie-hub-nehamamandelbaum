@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-const GlobalStyle = createGlobalStyle`
+export const GlobalStyle = createGlobalStyle`
 
 *{
     margin: 0;
@@ -11,7 +11,7 @@ const GlobalStyle = createGlobalStyle`
 
 body , input, button {
    font-family: 'Inter', sans-serif;
-   font-size: 0.75rem;
+   font-size: 1rem;
 } 
 
 button{
@@ -47,4 +47,13 @@ text-decoration: none;
 }
 `;
 
-export default GlobalStyle;
+export const colorPrimary = "#ff577f";
+export const colorPrimaryFocus = "#ff427f";
+export const colorPrimaryNegative = "#59323f";
+export const grey4 = "#121214";
+export const grey3 = "#212529";
+export const grey2 = "#343b41";
+export const grey1 = "#868e96";
+export const grey0 = "#f8f9fa";
+export const success = "#3fe864";
+export const negative = "#e83f5b";
