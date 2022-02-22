@@ -6,12 +6,14 @@ const Button = ({
   backgroundColor = "#ff577f",
   small = false,
   hoverColor = colorPrimaryFocus,
+  ...rest
 }) => {
   return (
     <Container
       backgroundColor={backgroundColor}
       small={small}
       hoverColor={hoverColor}
+      {...rest}
     >
       {children}
     </Container>

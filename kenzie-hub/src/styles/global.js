@@ -39,7 +39,7 @@ text-decoration: none;
     --success: #3fe864;
     --negative: #e83f5b;
 
-    --title-1: 1rem;
+    --title-1: 1.125rem;
     --title-2: calc(var(--title-1) - 0.25);
     --title-3: calc(var(--title-2) - 0.25);
 

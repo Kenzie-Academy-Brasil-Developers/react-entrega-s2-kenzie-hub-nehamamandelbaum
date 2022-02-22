@@ -8,6 +8,7 @@ export const Container = styled.button`
   border: none;
   padding: 0px 20px;
   transition: 0.3s;
+  width: 90%;
 
   :hover {
     background-color: ${(props) => props.hoverColor};
