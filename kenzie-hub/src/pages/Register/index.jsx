@@ -1,6 +1,7 @@
 import { Container, Form } from "./styles";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
+import Select from "../../components/Select";
 
 const Register = () => {
   return (
@@ -16,6 +17,10 @@ const Register = () => {
             label="Confirmar Senha"
             placeholder="Confirme sua senha"
           ></Input>
+          <Select
+            options={["Primeiro Módulo", "Segundo Módulo", "Terceiro Módulo"]}
+            label="Selecionar Módulo"
+          ></Select>
 
           <Button>Cadastrar</Button>
         </Form>

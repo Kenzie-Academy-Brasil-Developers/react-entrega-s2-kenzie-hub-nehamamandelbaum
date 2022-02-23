@@ -18,6 +18,7 @@ export const Container = styled.div`
     width: 100%;
     height: 40px;
     padding-left: 16px;
+    color: var(--grey-1);
   }
 
   input::placeholder {
