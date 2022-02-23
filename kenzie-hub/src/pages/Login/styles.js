@@ -8,6 +8,11 @@ export const Container = styled.div`
   align-items: center;
   background: black;
   padding: 22px 42px;
+  flex-direction: column;
+
+  img {
+    padding-bottom: 20px;
+  }
 `;
 
 export const Form = styled.form`
@@ -32,12 +37,4 @@ export const Form = styled.form`
     font-size: 12px;
     margin: 25px 0px;
   }
-`;
-
-export const Header = styled.header`
-  height: 100px;
-  background-color: black;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
 `;

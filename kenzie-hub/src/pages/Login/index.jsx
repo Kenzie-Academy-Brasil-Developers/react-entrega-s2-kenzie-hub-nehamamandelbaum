@@ -1,4 +1,4 @@
-import { Container, Form, Header } from "./styles";
+import { Container, Form } from "./styles";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
 
@@ -9,10 +9,8 @@ import logo from "../../assets/logo.svg";
 const Login = () => {
   return (
     <>
-      <Header>
-        <img src={logo} alt="" />
-      </Header>
       <Container>
+        <img src={logo} alt="" />
         <Form>
           <h1>Login</h1>
 
