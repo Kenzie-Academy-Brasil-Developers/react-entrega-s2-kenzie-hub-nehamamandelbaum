@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: 100vw;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -30,5 +31,25 @@ export const Form = styled.form`
     color: var(--grey-1);
     font-size: 12px;
     margin: 25px 0px;
+  }
+`;
+
+export const Header = styled.header`
+  background-color: black;
+  height: 160px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding-bottom: 25px;
+
+  div {
+    width: 100%;
+    max-width: 370px;
+
+    display: flex;
+    justify-content: space-between;
+    button {
+      width: 25%;
+    }
   }
 `;

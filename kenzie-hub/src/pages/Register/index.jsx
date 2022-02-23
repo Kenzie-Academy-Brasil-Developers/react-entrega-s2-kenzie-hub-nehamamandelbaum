@@ -1,11 +1,19 @@
-import { Container, Form } from "./styles";
+import { Container, Form, Header } from "./styles";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
 import Select from "../../components/Select";
 
+import logo from "../../assets/logo.svg";
+
 const Register = () => {
   return (
     <>
+      <Header>
+        <div>
+          <img src={logo} alt="Kenzie Hub Logo" />
+          <Button>Voltar</Button>
+        </div>
+      </Header>
       <Container>
         <Form>
           <h1>Crie sua Conta</h1>
