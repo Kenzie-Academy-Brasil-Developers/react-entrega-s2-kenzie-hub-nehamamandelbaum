@@ -1,16 +1,29 @@
+import { Header, NavBar, Main } from "./styles";
 import Button from "../../components/Button";
-import Select from "../../components/Select";
+
+import logo from "../../assets/logo.svg";
+
+import Card from "../../components/Card";
 
 const Home = () => {
   return (
     <>
-      <div> Hello World!! </div>
-      <div>Essa é a Página Home</div>
-      <Button>Esse é um botão de teste</Button>
-      <Select
-        options={["Opção 1", "Opção 2"]}
-        label="Selecione seu módulo"
-      ></Select>
+      <NavBar>
+        <div>
+          <img src={logo} alt="Kenzie Hub Logo" />
+          <Button>Voltar</Button>
+        </div>
+      </NavBar>
+
+      <Header>
+        <div>
+          <h1>Olá, Samule Leão</h1>
+          <span>Primeiro Módulo (Introdução ao Front-End)</span>
+        </div>
+      </Header>
+      <Main>
+        <Card name="React JS" level="Intermediário"></Card>
+      </Main>
     </>
   );
 };
