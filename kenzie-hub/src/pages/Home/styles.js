@@ -7,6 +7,7 @@ export const NavBar = styled.nav`
   justify-content: center;
   align-items: flex-end;
   padding-bottom: 25px;
+  padding: 0px 12px;
 
   div {
     width: 100%;
@@ -15,7 +16,7 @@ export const NavBar = styled.nav`
     display: flex;
     justify-content: space-between;
     button {
-      width: 12%;
+      width: 90px;
     }
   }
 `;
@@ -28,6 +29,7 @@ export const Header = styled.header`
   align-items: flex-end;
   padding-bottom: 25px;
   color: var(--grey-0);
+  padding: 0px 12px;
 
   div {
     width: 100%;
@@ -36,6 +38,8 @@ export const Header = styled.header`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
     h1 {
       font-size: 18px;
     }
@@ -68,7 +72,7 @@ export const TitleContainer = styled.div`
   align-items: center;
 
   button {
-    width: 10%;
+    width: 50px;
   }
   h2 {
     font-size: 16px;
