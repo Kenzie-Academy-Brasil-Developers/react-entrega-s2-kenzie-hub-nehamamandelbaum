@@ -1,9 +1,9 @@
-import { Header, NavBar, Main } from "./styles";
+import { Header, NavBar, Main, TitleContainer, CardContainer } from "./styles";
 import Button from "../../components/Button";
 
-import logo from "../../assets/logo.svg";
-
 import Card from "../../components/Card";
+
+import logo from "../../assets/logo.svg";
 
 const Home = () => {
   return (
@@ -22,7 +22,20 @@ const Home = () => {
         </div>
       </Header>
       <Main>
-        <Card name="React JS" level="Intermediário"></Card>
+        <TitleContainer>
+          <h2>Tecnologias</h2>
+          <Button>+</Button>
+        </TitleContainer>
+        <CardContainer>
+          <Card name="React.js" level="Avançado"></Card>
+          <Card name="React.js" level="Avançado"></Card>
+          <Card name="React.js" level="Avançado"></Card>
+          <Card name="React.js" level="Avançado"></Card>
+          <Card name="React.js" level="Avançado"></Card>
+          <Card name="React.js" level="Avançado"></Card>
+          <Card name="React.js" level="Avançado"></Card>
+          <Card name="React.js" level="Avançado"></Card>
+        </CardContainer>
       </Main>
     </>
   );
