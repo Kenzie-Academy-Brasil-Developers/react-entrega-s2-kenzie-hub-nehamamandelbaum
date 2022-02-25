@@ -8,6 +8,8 @@ import logo from "../../assets/logo.svg";
 import { useState } from "react";
 import { NewTechModal } from "../../components/NewTechModal";
 
+import { TechDetailsModal } from "../../components/TechDetailsModal";
+
 const Home = () => {
   const [isNewTechModalOpen, setIsNewTechModalOpen] = useState(false);
 
@@ -17,6 +19,16 @@ const Home = () => {
 
   function closeNewTechModal() {
     setIsNewTechModalOpen(false);
+  }
+
+  const [isTechDetailsModalOpen, setIsTechDetailsModalOpen] = useState(false);
+
+  function openTechDetailsModal() {
+    setIsTechDetailsModalOpen(true);
+  }
+
+  function closeTechDetailsModal() {
+    setIsTechDetailsModalOpen(false);
   }
 
   return (
@@ -40,7 +52,11 @@ const Home = () => {
           <Button onClick={openNewTechModal}>+</Button>
         </TitleContainer>
         <CardContainer>
-          <Card name="React.js" level="Avançado"></Card>
+          <Card
+            name="React.js"
+            level="Avançado"
+            onClick={openTechDetailsModal}
+          ></Card>
           <Card name="React.js" level="Avançado"></Card>
           <Card name="React.js" level="Avançado"></Card>
           <Card name="React.js" level="Avançado"></Card>
@@ -52,6 +68,10 @@ const Home = () => {
         <NewTechModal
           isOpen={isNewTechModalOpen}
           onRequestClose={closeNewTechModal}
+        />
+        <TechDetailsModal
+          isOpen={isTechDetailsModalOpen}
+          onRequestClose={closeTechDetailsModal}
         />
       </Main>
     </>

@@ -1,8 +1,8 @@
 import { Container } from "./styles";
 
-const Card = ({ name, level }) => {
+const Card = ({ name, level, ...rest }) => {
   return (
-    <Container>
+    <Container {...rest}>
       <h3>{name}</h3>
       <span>{level}</span>
     </Container>

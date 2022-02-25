@@ -10,6 +10,7 @@ export const Container = styled.div`
   background: var(--grey-4);
   padding: 0px 12px;
   border-radius: var(--radius-inputs-buttons-cards);
+  cursor: pointer;
 
   h3 {
     color: var(--grey-0);
@@ -18,5 +19,8 @@ export const Container = styled.div`
   span {
     color: var(--grey-1);
     font-size: 12px;
+  }
+  &:hover {
+    background: var(--grey-2);
   }
 `;
