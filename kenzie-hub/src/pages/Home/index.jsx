@@ -5,7 +5,20 @@ import Card from "../../components/Card";
 
 import logo from "../../assets/logo.svg";
 
+import { useState } from "react";
+import { NewTechModal } from "../../components/NewTechModal";
+
 const Home = () => {
+  const [isNewTechModalOpen, setIsNewTechModalOpen] = useState(false);
+
+  function openNewTechModal() {
+    setIsNewTechModalOpen(true);
+  }
+
+  function closeNewTechModal() {
+    setIsNewTechModalOpen(false);
+  }
+
   return (
     <>
       <NavBar>
@@ -24,7 +37,7 @@ const Home = () => {
       <Main>
         <TitleContainer>
           <h2>Tecnologias</h2>
-          <Button>+</Button>
+          <Button onClick={openNewTechModal}>+</Button>
         </TitleContainer>
         <CardContainer>
           <Card name="React.js" level="Avançado"></Card>
@@ -36,6 +49,10 @@ const Home = () => {
           <Card name="React.js" level="Avançado"></Card>
           <Card name="React.js" level="Avançado"></Card>
         </CardContainer>
+        <NewTechModal
+          isOpen={isNewTechModalOpen}
+          onRequestClose={closeNewTechModal}
+        />
       </Main>
     </>
   );
