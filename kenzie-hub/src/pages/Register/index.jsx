@@ -4,8 +4,35 @@ import Input from "../../components/Input";
 import Select from "../../components/Select";
 
 import logo from "../../assets/logo.svg";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+
+const schema = yup.object().shape({
+  name: yup.string().required("Campo obrigatório!"),
+  email: yup.string().email("Email inválido!").required("Campo obrigatório!"),
+  password: yup
+    .string()
+    .required("Campo obrigatório!")
+    .min(8, "Mínimo 8 dígitos!"),
+  confirmPassword: yup
+    .string()
+    .required("Campo obrigatório!")
+    .oneOf([yup.ref("password")], "Senhas diferentes! "),
+  module: yup.string().required("Selecione um módulo!"),
+});
 
 const Register = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(schema) });
+
+  const onSubmitFunction = (data) => {
+    console.log(data);
+  };
+
   return (
     <>
       <Header>
@@ -15,22 +42,46 @@ const Register = () => {
         </div>
       </Header>
       <Container>
-        <Form>
+        <Form onSubmit={handleSubmit(onSubmitFunction)}>
           <h1>Crie sua Conta</h1>
           <span>Rápido e grátis, vamos nessa</span>
-          <Input label="Nome" placeholder="Digite aqui o seu nome"></Input>
-          <Input label="Email" placeholder="Digite aqui o seu email"></Input>
-          <Input label="Senha" placeholder="Digite aqui a sua senha"></Input>
+          <Input
+            label="Nome"
+            placeholder="Digite aqui o seu nome"
+            register={register}
+            name="name"
+            error={errors.name?.message}
+          ></Input>
+          <Input
+            label="Email"
+            placeholder="Digite aqui o seu email"
+            register={register}
+            name="email"
+            error={errors.email?.message}
+          ></Input>
+          <Input
+            label="Senha"
+            placeholder="Digite aqui a sua senha"
+            register={register}
+            name="password"
+            error={errors.password?.message}
+          ></Input>
           <Input
             label="Confirmar Senha"
             placeholder="Confirme sua senha"
+            register={register}
+            name="confirmPassword"
+            error={errors.confirmPassword?.message}
           ></Input>
           <Select
             options={["Primeiro Módulo", "Segundo Módulo", "Terceiro Módulo"]}
             label="Selecionar Módulo"
+            register={register}
+            name="module"
+            error={errors.mudule?.message}
           ></Select>
 
-          <Button>Cadastrar</Button>
+          <Button type="submit">Cadastrar</Button>
         </Form>
       </Container>
     </>

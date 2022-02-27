@@ -7,6 +7,10 @@ export const Container = styled.div`
   width: 90%;
   margin-bottom: 25px;
 
+  span {
+    color: var(--negative);
+  }
+
   div {
     margin-bottom: 15px;
   }
