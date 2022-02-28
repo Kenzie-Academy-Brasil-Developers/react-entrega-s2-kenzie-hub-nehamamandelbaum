@@ -8,8 +8,23 @@ import { colorPrimaryNegative, grey1, grey2 } from "../../styles/global";
 
 import { ButtonContainer } from "./styles";
 
-Modal.setAppElement("#root");
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+
 export const TechDetailsModal = ({ isOpen, onRequestClose }) => {
+  const schema = yup.object().shape({
+    name: yup.string(),
+    status: yup.string(),
+  });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(schema) });
+
+  const onSubmitFunction = (data) => console.log(data);
   return (
     <Modal
       isOpen={isOpen}
@@ -21,11 +36,20 @@ export const TechDetailsModal = ({ isOpen, onRequestClose }) => {
       <button className="close-modal" type="button" onClick={onRequestClose}>
         X
       </button>
-      <form>
-        <Input label="Nome do Projeto" placeholder="Exemplo" />
+      <form onSubmit={handleSubmit(onSubmitFunction)}>
+        <Input
+          label="Nome do Projeto"
+          placeholder="Exemplo"
+          name="name"
+          register={register}
+          error={errors.name?.message}
+        />
         <Select
           label="Status"
           options={["Iniciante", "Intermediário", "Avançado"]}
+          name="status"
+          register={register}
+          error={errors.status?.message}
         />
         <ButtonContainer>
           <Button backgroundColor={colorPrimaryNegative} hoverColor={grey2}>

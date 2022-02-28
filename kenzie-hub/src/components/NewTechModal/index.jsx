@@ -9,8 +9,6 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-Modal.setAppElement("#root");
-
 export const NewTechModal = ({ isOpen, onRequestClose }) => {
   const schema = yup.object().shape({
     name: yup.string().required("Campo obrigatório!"),
