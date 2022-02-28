@@ -9,6 +9,9 @@ import { useState } from "react";
 import { NewTechModal } from "../../components/NewTechModal";
 
 import { TechDetailsModal } from "../../components/TechDetailsModal";
+import Modal from "react-modal";
+
+Modal.setAppElement("#root");
 
 const Home = () => {
   const [isNewTechModalOpen, setIsNewTechModalOpen] = useState(false);
