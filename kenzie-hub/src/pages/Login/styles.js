@@ -32,7 +32,7 @@ export const Form = styled.form`
     font-size: var(--title-1);
   }
 
-  span {
+  .create--account {
     color: var(--grey-1);
     font-size: 12px;
     margin: 25px 0px;
