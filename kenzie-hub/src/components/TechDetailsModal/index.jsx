@@ -8,6 +8,7 @@ import { colorPrimaryNegative, grey1, grey2 } from "../../styles/global";
 
 import { ButtonContainer } from "./styles";
 
+Modal.setAppElement("#root");
 export const TechDetailsModal = ({ isOpen, onRequestClose }) => {
   return (
     <Modal
