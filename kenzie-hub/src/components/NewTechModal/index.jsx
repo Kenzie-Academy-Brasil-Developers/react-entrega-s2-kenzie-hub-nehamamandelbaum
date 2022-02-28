@@ -43,12 +43,14 @@ export const NewTechModal = ({ isOpen, onRequestClose }) => {
           placeholder="Digite o nome da tecnologia"
           register={register}
           error={errors.name?.message}
+          name="name"
         ></Input>
         <Select
           label="Selecionar Status"
           options={["Iniciante", "Intermediário", "Avançado"]}
           register={register}
           error={errors.status?.message}
+          name="status"
         ></Select>
         <Button type="submit">Cadastrar Tecnologia</Button>
       </Container>
