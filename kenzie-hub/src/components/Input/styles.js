@@ -7,7 +7,7 @@ export const Container = styled.div`
   width: 90%;
   margin-bottom: 25px;
 
-  span {
+  .error {
     color: var(--negative);
   }
 

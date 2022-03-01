@@ -4,7 +4,7 @@ const Input = ({ label, placeholder, register, name, error, ...rest }) => {
   return (
     <Container>
       <div>
-        {label} {!!error && <span> - {error}</span>}
+        {label} {!!error && <span className="error"> - {error}</span>}
       </div>
       <input
         type="text"
