@@ -10,9 +10,11 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import { useHistory } from "react-router-dom";
+import { useHistory, Redirect } from "react-router-dom";
+import { api } from "../../services/api";
+import { toast } from "react-toastify";
 
-const Login = () => {
+const Login = ({ authenticated, setAuthenticated }) => {
   const history = useHistory();
   const redirectToRegister = () => history.push("/register");
   const schema = yup.object().shape({
@@ -26,7 +28,24 @@ const Login = () => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
-  const onSubmitFunction = (data) => console.log(data);
+  const onSubmitFunction = (data) => {
+    api
+      .post("/sessions", data)
+      .then((response) => {
+        const { token, user } = response.data;
+        localStorage.setItem("@kenzieHub:token", JSON.stringify(token));
+        localStorage.setItem("@kenzieHub:user", JSON.stringify(user));
+        setAuthenticated(true);
+        return history.push("/");
+      })
+      .catch((err) =>
+        toast.error("Email ou senha inválidos! ", { theme: "dark" })
+      );
+  };
+
+  if (authenticated) {
+    return <Redirect to="/" />;
+  }
   return (
     <>
       <Container>

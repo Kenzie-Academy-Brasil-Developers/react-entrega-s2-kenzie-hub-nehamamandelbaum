@@ -11,8 +11,9 @@ import { api } from "../../services/api";
 import { toast } from "react-toastify";
 
 import { useHistory } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
-const Register = () => {
+const Register = ({ authenticated }) => {
   const schema = yup.object().shape({
     name: yup.string().required("Campo obrigatório!"),
     email: yup.string().email("Email inválido!").required("Campo obrigatório!"),
@@ -56,6 +57,9 @@ const Register = () => {
         });
       });
   };
+  if (authenticated) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <>

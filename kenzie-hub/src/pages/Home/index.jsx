@@ -10,10 +10,11 @@ import { NewTechModal } from "../../components/NewTechModal";
 
 import { TechDetailsModal } from "../../components/TechDetailsModal";
 import Modal from "react-modal";
+import { Redirect } from "react-router-dom";
 
 Modal.setAppElement("#root");
 
-const Home = () => {
+const Home = ({ authenticated }) => {
   const [isNewTechModalOpen, setIsNewTechModalOpen] = useState(false);
 
   function openNewTechModal() {
@@ -34,6 +35,9 @@ const Home = () => {
     setIsTechDetailsModalOpen(false);
   }
 
+  if (!authenticated) {
+    return <Redirect to="/login" />;
+  }
   return (
     <>
       <NavBar>
