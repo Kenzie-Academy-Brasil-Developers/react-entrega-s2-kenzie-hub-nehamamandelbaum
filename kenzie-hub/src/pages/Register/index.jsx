@@ -7,30 +7,54 @@ import logo from "../../assets/logo.svg";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { api } from "../../services/api";
+import { toast } from "react-toastify";
 
-const schema = yup.object().shape({
-  name: yup.string().required("Campo obrigatório!"),
-  email: yup.string().email("Email inválido!").required("Campo obrigatório!"),
-  password: yup
-    .string()
-    .required("Campo obrigatório!")
-    .min(8, "Mínimo 8 dígitos!"),
-  confirmPassword: yup
-    .string()
-    .required("Campo obrigatório!")
-    .oneOf([yup.ref("password")], "Senhas diferentes! "),
-  module: yup.string().required("Selecione um módulo!"),
-});
+import { useHistory } from "react-router-dom";
 
 const Register = () => {
+  const schema = yup.object().shape({
+    name: yup.string().required("Campo obrigatório!"),
+    email: yup.string().email("Email inválido!").required("Campo obrigatório!"),
+    password: yup
+      .string()
+      .required("Campo obrigatório!")
+      .min(8, "Mínimo 8 dígitos!"),
+    confirmPassword: yup
+      .string()
+      .required("Campo obrigatório!")
+      .oneOf([yup.ref("password")], "Senhas diferentes! "),
+    course_module: yup.string().required("Selecione um módulo!"),
+  });
+  const history = useHistory();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
-  const onSubmitFunction = (data) => {
-    console.log(data);
+  const onSubmitFunction = ({ name, email, password, course_module }) => {
+    const newUser = {
+      email,
+      password,
+      name,
+      bio: "hello world",
+      contact: "hello World",
+      course_module,
+    };
+    api
+      .post("/users", newUser)
+      .then((response) => {
+        console.log(response.data);
+        toast.success("Conta criada com sucesso! ", { theme: "dark" });
+        return history.push("/login");
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error("Erro ao criar a conta, tente outro email!", {
+          theme: "dark",
+        });
+      });
   };
 
   return (
@@ -74,11 +98,16 @@ const Register = () => {
             error={errors.confirmPassword?.message}
           ></Input>
           <Select
-            options={["Primeiro Módulo", "Segundo Módulo", "Terceiro Módulo"]}
+            options={[
+              "Primeiro módulo (Introdução ao Frontend)",
+              "Segundo módulo (Frontend Avançado)",
+              "Terceiro módulo (Introdução ao Backend)",
+              "Quarto módulo (Backend Avançado)",
+            ]}
             label="Selecionar Módulo"
             register={register}
-            name="module"
-            error={errors.mudule?.message}
+            name="course_module"
+            error={errors.course_module?.message}
           ></Select>
 
           <Button type="submit">Cadastrar</Button>
