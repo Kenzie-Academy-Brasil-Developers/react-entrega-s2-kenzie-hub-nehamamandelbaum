@@ -30,7 +30,6 @@ const Home = ({ authenticated }) => {
   const [isTechDetailsModalOpen, setIsTechDetailsModalOpen] = useState(false);
 
   function openTechDetailsModal() {
-    console.log("abrindo modal de detalhe de tecnologia");
     setIsTechDetailsModalOpen(true);
   }
 

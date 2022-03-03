@@ -26,33 +26,34 @@ export const TechDetailsModal = ({ isOpen, onRequestClose, tech }) => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
-  const token = localStorage.getItem("@kenzieHub:token");
+  const token = JSON.parse(localStorage.getItem("@kenzieHub:token"));
 
   const onSubmitFunction = (data) => {
-    const { status } = data;
-    console.log(tech.id);
-
     api
-      .put(
-        `/users/techs/${tech.id}`,
-        { status: status },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
+      .put(`/users/techs/${tech.id}`, data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) =>
+        toast.success("Tecnologia atualizada com sucesso!", { theme: "dark" })
       )
-      .then((response) => console.log(response))
       .catch((err) => console.log(err));
+    onRequestClose();
   };
 
   function deleteTech(tech) {
     api
-      .delete(`/users/techs/${tech.id}`)
+      .delete(`/users/techs/${tech.id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((response) =>
         toast.success("Tech apagado com sucesso!", { theme: "dark" })
       )
       .catch((err) => console.log(err));
+    onRequestClose();
   }
   return (
     <Modal
@@ -72,6 +73,7 @@ export const TechDetailsModal = ({ isOpen, onRequestClose, tech }) => {
           name="title"
           register={register}
           error={errors.title?.message}
+          value={tech.title}
         />
         <p>Status Atual: {tech.status}</p>
         <p>Selecione o status que você quer: </p>
