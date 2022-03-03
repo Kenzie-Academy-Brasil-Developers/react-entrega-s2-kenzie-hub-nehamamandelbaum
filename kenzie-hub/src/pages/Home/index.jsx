@@ -16,7 +16,7 @@ import { api } from "../../services/api";
 
 Modal.setAppElement("#root");
 
-const Home = ({ authenticated }) => {
+const Home = ({ authenticated, setAuthenticated }) => {
   const [isNewTechModalOpen, setIsNewTechModalOpen] = useState(false);
 
   function openNewTechModal() {
@@ -42,15 +42,12 @@ const Home = ({ authenticated }) => {
   const [userTechs, setUserTechs] = useState([]);
 
   function loadTechs() {
-    api
-      .get(`/users/${user.id}`)
-      .then((response) => setUserTechs(response.data.techs))
-      .catch((err) => console.log(err));
+    user &&
+      api
+        .get(`/users/${user.id}`)
+        .then((response) => setUserTechs(response.data.techs))
+        .catch((err) => console.log(err));
   }
-
-  useEffect(() => {
-    loadTechs();
-  }, [userTechs]);
 
   function openTechDetails(tech) {
     setTechToUpdate(tech);
@@ -58,11 +55,14 @@ const Home = ({ authenticated }) => {
   }
 
   const [techToUpdate, setTechToUpdate] = useState({});
-  if (!authenticated) {
-    return <Redirect to="/login" />;
-  }
 
-  // state to set which tech the modal is going to show the details:
+  useEffect(() => {
+    loadTechs();
+  }, [userTechs]);
+
+  if (!authenticated) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <>

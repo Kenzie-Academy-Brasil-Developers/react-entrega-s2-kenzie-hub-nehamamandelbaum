@@ -13,7 +13,7 @@ import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 
-const Register = ({ authenticated }) => {
+const Register = ({ authenticated, setAuthenticated }) => {
   const schema = yup.object().shape({
     name: yup.string().required("Campo obrigatório!"),
     email: yup.string().email("Email inválido!").required("Campo obrigatório!"),
@@ -57,7 +57,7 @@ const Register = ({ authenticated }) => {
       });
   };
   if (authenticated) {
-    return <Redirect to="/" />;
+    return <Redirect to="/dashboard" />;
   }
 
   return (

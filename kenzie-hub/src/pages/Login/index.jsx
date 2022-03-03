@@ -36,7 +36,7 @@ const Login = ({ authenticated, setAuthenticated }) => {
         localStorage.setItem("@kenzieHub:token", JSON.stringify(token));
         localStorage.setItem("@kenzieHub:user", JSON.stringify(user));
         setAuthenticated(true);
-        return history.push("/");
+        return history.push("/dashboard");
       })
       .catch((err) =>
         toast.error("Email ou senha inválidos! ", { theme: "dark" })
@@ -44,7 +44,7 @@ const Login = ({ authenticated, setAuthenticated }) => {
   };
 
   if (authenticated) {
-    return <Redirect to="/" />;
+    return <Redirect to="/dashboard" />;
   }
   return (
     <>
