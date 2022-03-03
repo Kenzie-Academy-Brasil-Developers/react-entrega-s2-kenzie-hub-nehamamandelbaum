@@ -4,13 +4,12 @@ const Select = ({ options, label, register, name, error, ...rest }) => {
   return (
     <ContainerDiv>
       <label>
-        {" "}
         {label} {!!error && <span>{error}</span>}
       </label>
 
       <Container {...register(name)} {...rest}>
         {options.map((option, index) => (
-          <option value={option.toLowerCase()} key={index}>
+          <option value={option} key={index}>
             {option}
           </option>
         ))}

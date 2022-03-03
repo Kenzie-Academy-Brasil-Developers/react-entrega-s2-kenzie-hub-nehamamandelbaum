@@ -30,6 +30,7 @@ const Home = ({ authenticated }) => {
   const [isTechDetailsModalOpen, setIsTechDetailsModalOpen] = useState(false);
 
   function openTechDetailsModal() {
+    console.log("abrindo modal de detalhe de tecnologia");
     setIsTechDetailsModalOpen(true);
   }
 
@@ -50,13 +51,20 @@ const Home = ({ authenticated }) => {
 
   useEffect(() => {
     loadTechs();
-  }, []);
+  }, [userTechs]);
 
-  // Fazer o useEffect para a requisição das tecnologias, colocar no estado e listar.
+  function openTechDetails(tech) {
+    setTechToUpdate(tech);
+    openTechDetailsModal();
+  }
 
+  const [techToUpdate, setTechToUpdate] = useState({});
   if (!authenticated) {
     return <Redirect to="/login" />;
   }
+
+  // state to set which tech the modal is going to show the details:
+
   return (
     <>
       <NavBar>
@@ -79,7 +87,13 @@ const Home = ({ authenticated }) => {
         </TitleContainer>
         <CardContainer>
           {userTechs.map((tech) => {
-            return <Card tech={tech} onClick={openTechDetailsModal} />;
+            return (
+              <Card
+                tech={tech}
+                onClick={() => openTechDetails(tech)}
+                key={tech.id}
+              ></Card>
+            );
           })}
         </CardContainer>
         <NewTechModal
@@ -89,6 +103,7 @@ const Home = ({ authenticated }) => {
         <TechDetailsModal
           isOpen={isTechDetailsModalOpen}
           onRequestClose={closeTechDetailsModal}
+          tech={techToUpdate}
         />
       </Main>
     </>

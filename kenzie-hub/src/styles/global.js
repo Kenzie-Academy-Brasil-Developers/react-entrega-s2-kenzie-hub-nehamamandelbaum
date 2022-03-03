@@ -58,6 +58,10 @@ text-decoration: none;
         color: var(--grey-0);
         font-size: 14px;
     }
+    p{
+        color: var(--grey-0);
+        margin-bottom: 5px;
+    }
 
 }
 

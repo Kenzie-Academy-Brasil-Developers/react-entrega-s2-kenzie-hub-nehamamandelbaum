@@ -8,10 +8,12 @@ import Button from "../../components/Button";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { api } from "../../services/api";
+import { toast } from "react-toastify";
 
 export const NewTechModal = ({ isOpen, onRequestClose }) => {
   const schema = yup.object().shape({
-    name: yup.string().required("Campo obrigatório!"),
+    title: yup.string().required("Campo obrigatório!"),
     status: yup.string().required("Selecione um campo! "),
   });
 
@@ -21,7 +23,23 @@ export const NewTechModal = ({ isOpen, onRequestClose }) => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
-  const onSubmitFunction = (data) => console.log(data);
+  const token = JSON.parse(localStorage.getItem("@kenzieHub:token"));
+
+  const onSubmitFunction = (data) => {
+    api
+      .post("/users/techs", data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        toast.success("Tecnologia Cadastrada com sucesso!", { theme: "dark" });
+      })
+      .catch((err) =>
+        toast.error("Você já cadastrou essa tech! ", { theme: "dark" })
+      );
+    onRequestClose();
+  };
 
   return (
     <Modal
@@ -40,8 +58,8 @@ export const NewTechModal = ({ isOpen, onRequestClose }) => {
           label="Nome"
           placeholder="Digite o nome da tecnologia"
           register={register}
-          error={errors.name?.message}
-          name="name"
+          error={errors.title?.message}
+          name="title"
         ></Input>
         <Select
           label="Selecionar Status"
