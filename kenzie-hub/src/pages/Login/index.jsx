@@ -66,6 +66,7 @@ const Login = ({ authenticated, setAuthenticated }) => {
             register={register}
             name="password"
             error={errors.email?.message}
+            type="password"
           ></Input>
 
           <Button type="submit">Entrar</Button>

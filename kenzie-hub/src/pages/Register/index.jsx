@@ -92,6 +92,7 @@ const Register = ({ authenticated, setAuthenticated }) => {
             register={register}
             name="password"
             error={errors.password?.message}
+            type="password"
           ></Input>
           <Input
             label="Confirmar Senha"
@@ -99,6 +100,7 @@ const Register = ({ authenticated, setAuthenticated }) => {
             register={register}
             name="confirmPassword"
             error={errors.confirmPassword?.message}
+            type="password"
           ></Input>
           <Select
             options={[
