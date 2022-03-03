@@ -46,7 +46,6 @@ const Register = ({ authenticated }) => {
     api
       .post("/users", newUser)
       .then((response) => {
-        console.log(response.data);
         toast.success("Conta criada com sucesso! ", { theme: "dark" });
         return history.push("/login");
       })
