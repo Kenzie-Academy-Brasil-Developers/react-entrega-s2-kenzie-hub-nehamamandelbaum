@@ -11,6 +11,8 @@ import { NewTechModal } from "../../components/NewTechModal";
 import { TechDetailsModal } from "../../components/TechDetailsModal";
 import Modal from "react-modal";
 import { Redirect } from "react-router-dom";
+import { useEffect } from "react";
+import { api } from "../../services/api";
 
 Modal.setAppElement("#root");
 
@@ -35,6 +37,23 @@ const Home = ({ authenticated }) => {
     setIsTechDetailsModalOpen(false);
   }
 
+  const user = JSON.parse(localStorage.getItem("@kenzieHub:user"));
+
+  const [userTechs, setUserTechs] = useState([]);
+
+  function loadTechs() {
+    api
+      .get(`/users/${user.id}`)
+      .then((response) => setUserTechs(response.data.techs))
+      .catch((err) => console.log(err));
+  }
+
+  useEffect(() => {
+    loadTechs();
+  }, []);
+
+  // Fazer o useEffect para a requisição das tecnologias, colocar no estado e listar.
+
   if (!authenticated) {
     return <Redirect to="/login" />;
   }
@@ -49,8 +68,8 @@ const Home = ({ authenticated }) => {
 
       <Header>
         <div>
-          <h1>Olá, Samule Leão</h1>
-          <span>Primeiro Módulo (Introdução ao Front-End)</span>
+          <h1>Olá, {user.name}!</h1>
+          <span>{user.course_module}</span>
         </div>
       </Header>
       <Main>
@@ -59,18 +78,9 @@ const Home = ({ authenticated }) => {
           <Button onClick={openNewTechModal}>+</Button>
         </TitleContainer>
         <CardContainer>
-          <Card
-            name="React.js"
-            level="Avançado"
-            onClick={openTechDetailsModal}
-          ></Card>
-          <Card name="React.js" level="Avançado"></Card>
-          <Card name="React.js" level="Avançado"></Card>
-          <Card name="React.js" level="Avançado"></Card>
-          <Card name="React.js" level="Avançado"></Card>
-          <Card name="React.js" level="Avançado"></Card>
-          <Card name="React.js" level="Avançado"></Card>
-          <Card name="React.js" level="Avançado"></Card>
+          {userTechs.map((tech) => {
+            return <Card tech={tech} onClick={openTechDetailsModal} />;
+          })}
         </CardContainer>
         <NewTechModal
           isOpen={isNewTechModalOpen}
