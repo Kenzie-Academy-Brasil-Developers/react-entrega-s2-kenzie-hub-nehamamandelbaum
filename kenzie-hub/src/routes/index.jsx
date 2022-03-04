@@ -21,13 +21,13 @@ export const Routes = () => {
           setAuthenticated={setAuthenticated}
         />
       </Route>
-      <Route path="/">
+      <Route exact path="/">
         <Login
           authenticated={authenticated}
           setAuthenticated={setAuthenticated}
         />
       </Route>
-      <Route path="/register">
+      <Route exact path="/register">
         <Register
           authenticated={authenticated}
           setAuthenticated={setAuthenticated}

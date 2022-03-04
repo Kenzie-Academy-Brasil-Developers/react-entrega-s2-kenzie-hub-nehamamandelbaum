@@ -47,7 +47,7 @@ const Register = ({ authenticated, setAuthenticated }) => {
       .post("/users", newUser)
       .then((response) => {
         toast.success("Conta criada com sucesso! ", { theme: "dark" });
-        return history.push("/login");
+        return history.push("/");
       })
       .catch((err) => {
         console.log(err);
